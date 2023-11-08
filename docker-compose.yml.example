@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  dragonite:
+    image: ghcr.io/unownhash/dragonite-public:main
+    container_name: dragonite
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./config.toml
+        target: /dragonite/config.toml
+      # optional volumes if you want to have access to logs
+      # comment if not needed
+      - type: volume
+        source: ${PWD}/logs
+        target: /dragonite/logs
+    ports:
+      - "7272:7272"

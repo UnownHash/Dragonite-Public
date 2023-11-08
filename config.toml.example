@@ -1,0 +1,44 @@
+[general]
+login_delay = 20 
+# seconds to sleep in-between PTC authing on one proxy
+
+# Whether raw worker stats are written
+stats = false
+
+# Host and Port used for the Dragonite API
+api_host = "127.0.0.1"
+api_port = 7272
+
+# Host and Port used for Koji integration
+koji_url = "http://ip:port"
+koji_bearer_token = "KOJI_SECRET"
+
+[tuning]
+recycle_gmo_limit = 4900
+recycle_encounter_limit = 9900
+#minimum_account_reuse_hours = 169
+
+[rotom]
+endpoint = "ws://127.0.0.1:7071"
+
+[logging]
+save = false
+#debug = false
+#max_size = 500 # MB
+#max_age = 30 # days
+
+[processors]
+# Golbat Endpoint is singular - and will configure an endpoint for raw sending and API
+golbat_endpoint = "http://127.0.0.1:9001"
+golbat_raw_bearer = ""
+golbat_api_secret = ""
+# if this is present then dragonite will not send raws to the httpendpoint
+#golbat_grpc_endpoint = "127.0.0.1:50001"
+
+[db.dragonite]
+host = "0.0.0.0"
+port = 3306
+user = ""
+password = ""
+name = "dragonite"
+pool_size = 1
