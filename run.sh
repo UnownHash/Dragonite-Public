@@ -21,6 +21,7 @@ Darwin)
     ;;
 esac
 
+echo $FILE_PREFIX
 if ! which jq; then
   echo "jq is not installed (sudo apt-get install jq)"
   exit 1
@@ -44,8 +45,14 @@ RELEASE_TAG="$latest_tag"
 
 # Get the list of releases using the GitHub API
 api_url="https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/tags/$latest_tag"
-releases_info=$(curl -s "$api_url")
+releases_info=$(curl -sf "$api_url")
 
+if [ -z $releases_info ]; then
+  echo "Failed to download release information"
+  exit 1
+fi
+
+echo $releases_info
 # Extract the download URL for the specific file in the latest release
 download_url=$(echo "$releases_info" | jq -r ".assets[] | select(.name == \"$FILE_NAME\").url")
 
