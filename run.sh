@@ -1,17 +1,37 @@
 #!/bin/bash
 
+FILE_PREFIX="linux/arm64"
+
+# Check for operating system
+case $( uname -s ) in
+Linux)
+
+    case $( uname -i ) in
+    x86_64)
+        FILE_PREFIX="linux/amd64"
+        ;;
+    arm64)
+        FILE_PREFIX="linux/arm64"
+        ;;
+    esac
+
+    ;;
+Darwin)
+    FILE_PREFIX="darwin/arm64"
+    ;;
+esac
+
+if ! which jq; then
+  echo "jq is not installed (sudo apt-get install jq)"
+  exit 1
+fi
+
 # Repo to download
 GITHUB_OWNER="UnownHash"
 GITHUB_REPO="Dragonite-Public"
 
-# Check if an argument is provided to specify the file
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 [linux-amd64|darwin-arm64|linux-arm64]"
-    exit 1
-fi
-
 # Get the selected file name from the argument
-FILE_NAME="dragonite-$1"
+FILE_NAME="dragonite-$FILE_PREFIX"
 
 # Fetch the latest tags from the local Git repository
 git fetch --tags
