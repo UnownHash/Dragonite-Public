@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE_PREFIX="linux/arm64"
+FILE_PREFIX="linux-arm64"
 
 # Check for operating system
 case $( uname -s ) in
@@ -8,16 +8,16 @@ Linux)
 
     case $( uname -i ) in
     x86_64)
-        FILE_PREFIX="linux/amd64"
+        FILE_PREFIX="linux-amd64"
         ;;
     arm64)
-        FILE_PREFIX="linux/arm64"
+        FILE_PREFIX="linux-arm64"
         ;;
     esac
 
     ;;
 Darwin)
-    FILE_PREFIX="darwin/arm64"
+    FILE_PREFIX="darwin-arm64"
     ;;
 esac
 
