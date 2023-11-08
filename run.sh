@@ -21,8 +21,7 @@ Darwin)
     ;;
 esac
 
-echo $FILE_PREFIX
-if ! which jq; then
+if ! [ "$(which jq)" ]; then
   echo "jq is not installed (sudo apt-get install jq)"
   exit 1
 fi
