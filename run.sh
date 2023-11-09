@@ -21,6 +21,14 @@ Darwin)
     ;;
 esac
 
+if [ -z $FILE_PREFIX ]; then
+  if [ $# -eq 0 ]; then
+    echo "Usage: $0 [linux-amd64|darwin-arm64|linux-arm64]"
+    exit 1
+  fi
+  FILE_PREFIX="$1"
+fi
+
 if ! [ "$(which jq)" ]; then
   echo "jq is not installed (sudo apt-get install jq)"
   exit 1
