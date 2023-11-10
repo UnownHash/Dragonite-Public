@@ -17,6 +17,8 @@ koji_bearer_token = "KOJI_SECRET"
 recycle_gmo_limit = 4900
 recycle_encounter_limit = 9900
 #minimum_account_reuse_hours = 169
+#location_delay = 0
+#fort_location_delay = 0
 
 [rotom]
 endpoint = "ws://127.0.0.1:7071"
