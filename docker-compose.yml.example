@@ -15,3 +15,19 @@ services:
         target: /dragonite/logs
     ports:
       - "7272:7272"
+  admin:
+    image: ghcr.io/unownhash/dragonite-public-admin:main
+    container_name: admin
+    restart: unless-stopped
+    environment:
+      ADMIN_GENERAL_USERNAME: admin
+      ADMIN_GENERAL_PASSWORD: password
+      ADMIN_DRAGONITE_API_ENDPOINT: http://dragonite:7272
+      ADMIN_DRAGONITE_API_SECRET: secret
+      #ADMIN_GOLBAT_API_ENDPOINT: http://golbat:9001
+      #ADMIN_GOLBAT_API_SECRET: secret
+      #ADMIN_KOJI_API_ENDPOINT: http://koji:8080
+      #ADMIN_KOJI_API_BEARER_TOKEN: secret
+    ports:
+      - '7273:7273'
+
