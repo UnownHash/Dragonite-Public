@@ -1,7 +1,5 @@
 #!/bin/bash
 
-FILE_PREFIX="linux-arm64"
-
 # Check for operating system
 case $( uname -s ) in
 Linux)
