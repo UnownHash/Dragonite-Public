@@ -1,0 +1,17 @@
+[general]
+host = "127.0.0.1"
+port = 7273
+username = "admin"
+password = "password"
+
+[dragonite]
+api_endpoint = "http://127.0.0.1:7272"
+# api_secret = ""
+
+[golbat]
+api_endpoint = "http://127.0.0.1:9001"
+# api_secret = ""
+
+[koji]
+api_endpoint = "http://127.0.0.1:8080"
+# bearer_token = ""

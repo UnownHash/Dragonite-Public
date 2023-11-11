@@ -65,7 +65,7 @@ download_url=$(echo "$releases_info" | jq -r ".assets[] | select(.name == \"$FIL
 download_filename="$FILE_NAME"
 
 # Download the specific release file
-curl -L -H "Accept: application/octet-stream" -o "$download_filename"  "$download_url"
+curl -L -H "Accept: application/octet-stream" -o "dragonite/$download_filename"  "$download_url"
 
 # Check if the download was successful
 if [ $? -ne 0 ]; then
