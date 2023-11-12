@@ -19,7 +19,7 @@ Darwin)
     ;;
 esac
 
-if [ -z $FILE_PREFIX ]; then
+if [ -z "$FILE_PREFIX" ]; then
   if [ $# -eq 0 ]; then
     echo "Usage: $0 [linux-amd64|darwin-arm64|linux-arm64]"
     exit 1
@@ -62,7 +62,7 @@ download_latest_release() {
   local api_url="https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/tags/$latest_tag_var"
   local releases_info=$(curl -sf "$api_url")
 
-  if [ -z $releases_info ]; then
+  if [ -z "$releases_info" ]; then
     echo "Failed to download $application release information"
     exit 1
   fi
@@ -74,18 +74,17 @@ download_latest_release() {
   local download_filename="$FILE_NAME"
 
   # Download the specific release file
-  curl -L -H "Accept: application/octet-stream" -o "$application/$download_filename" "$download_url"
+  echo "Downloading $download_filename $latest_tag_var ... waiting ..."
+  curl -sL -H "Accept: application/octet-stream" -o "$application/$download_filename" "$download_url"
 
   # Check if the download was successful
   if [ $? -ne 0 ]; then
     echo "Failed to download the release file"
     exit 1
   fi
-  echo "Downloaded $download_filename"
+  echo "Downloaded $download_filename $latest_tag_var"
+  chmod +x "$application/$downlad_filename"
 }
 
 download_latest_release "dragonite"
 download_latest_release "admin"
-
-echo "Latest release with tag $latest_dragonite_tag"
-echo "Latest release with tag $latest_admin_tag"
