@@ -83,7 +83,7 @@ download_latest_release() {
     exit 1
   fi
   echo "Downloaded $download_filename $latest_tag_var"
-  chmod +x "$application/$downlad_filename"
+  chmod +x "$application/$download_filename"
 }
 
 download_latest_release "dragonite"
