@@ -74,7 +74,7 @@ download_latest_release() {
   local download_filename="$FILE_NAME"
 
   # Download the specific release file
-  curl -L -H "Accept: application/octet-stream" -o "$application/$download_filename"  "$download_url"
+  curl -L -H "Accept: application/octet-stream" -o "$application/$download_filename" "$download_url"
 
   # Check if the download was successful
   if [ $? -ne 0 ]; then
