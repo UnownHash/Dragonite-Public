@@ -19,7 +19,7 @@ Darwin)
     ;;
 esac
 
-if [ -z $FILE_PREFIX ]; then
+if [ -z "$FILE_PREFIX" ]; then
   if [ $# -eq 0 ]; then
     echo "Usage: $0 [linux-amd64|darwin-arm64|linux-arm64]"
     exit 1
@@ -62,7 +62,7 @@ download_latest_release() {
   local api_url="https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/tags/$latest_tag_var"
   local releases_info=$(curl -sf "$api_url")
 
-  if [ -z $releases_info ]; then
+  if [ -z "$releases_info" ]; then
     echo "Failed to download $application release information"
     exit 1
   fi
