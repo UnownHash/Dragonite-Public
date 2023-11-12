@@ -9,7 +9,7 @@ stats = false
 api_host = "127.0.0.1"
 api_port = 7272
 
-# Host and Port used for Koji integration
+[koji]
 koji_url = "http://ip:port"
 koji_bearer_token = "KOJI_SECRET"
 
