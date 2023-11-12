@@ -15,8 +15,8 @@ bearer_token = "KOJI_SECRET"
 
 [tuning]
 dynamic_route_split = true
-recycle_gmo_limit = 4900
-recycle_encounter_limit = 9900
+#recycle_gmo_limit = 4900
+#recycle_encounter_limit = 9900
 #minimum_account_reuse_hours = 169
 #location_delay = 0
 #fort_location_delay = 0
