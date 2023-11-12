@@ -9,9 +9,9 @@ stats = false
 api_host = "127.0.0.1"
 api_port = 7272
 
-# Host and Port used for Koji integration
-koji_url = "http://ip:port"
-koji_bearer_token = "KOJI_SECRET"
+[koji]
+url = "http://ip:port"
+bearer_token = "KOJI_SECRET"
 
 [tuning]
 recycle_gmo_limit = 4900
