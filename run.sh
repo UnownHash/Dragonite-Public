@@ -81,6 +81,7 @@ download_latest_release() {
     echo "Failed to download the release file"
     exit 1
   fi
+  chmod +x "$application/$download_filename"
   echo "Downloaded $download_filename"
 }
 
