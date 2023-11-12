@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   dragonite:
-    image: ghcr.io/unownhash/dragonite-public:main
+    image: ghcr.io/unownhash/dragonite-public:latest
     container_name: dragonite
     restart: unless-stopped
     volumes:
@@ -16,7 +16,7 @@ services:
     ports:
       - "7272:7272"
   admin:
-    image: ghcr.io/unownhash/dragonite-public-admin:main
+    image: ghcr.io/unownhash/dragonite-public-admin:latest
     container_name: admin
     restart: unless-stopped
     environment:
@@ -32,5 +32,5 @@ services:
       ADMIN_KOJI_API_ENDPOINT: http://koji:8080
       ADMIN_KOJI_API_BEARER_TOKEN: secret
     ports:
-      - '3615:3615'
+      - '7273:7273'
 
