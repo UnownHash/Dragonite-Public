@@ -10,8 +10,8 @@ api_host = "127.0.0.1"
 api_port = 7272
 
 [koji]
-koji_url = "http://ip:port"
-koji_bearer_token = "KOJI_SECRET"
+url = "http://ip:port"
+bearer_token = "KOJI_SECRET"
 
 [tuning]
 recycle_gmo_limit = 4900
