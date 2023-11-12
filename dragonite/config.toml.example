@@ -24,7 +24,7 @@ recycle_encounter_limit = 9900
 endpoint = "ws://127.0.0.1:7071"
 
 [logging]
-save = false
+save = true
 #debug = false
 #max_size = 500 # MB
 #max_age = 30 # days
