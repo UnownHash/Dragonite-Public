@@ -9,7 +9,7 @@
 ## Start
 - `cd dragonite` - `pm2 start ./dragonite-linux-amd64 --name dragonite -o "/dev/null"` (change filename if using different platform)
 - `cd ..`
-- `cd admin` - `pm2 start ./admin-linux-amd64 --name dragonite-admin -o "/dev/null"`  (change filename if using different platform)
+- `cd admin` - `pm2 start ./admin-linux-amd64 --name dragonite-admin`  (change filename if using different platform)
 
 ## Update
 - Execute `run.sh` to download the latest release
