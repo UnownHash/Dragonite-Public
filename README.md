@@ -1,5 +1,7 @@
 # Dragonite-Public
 
+[Unown# docs](https://unownhash.com/docs/dragonite)
+
 ## Setup
 - Execute `run.sh` to download the latest release binary
 - Create `config.toml` for dragonite: `cp dragonite/config.toml.example dragonite/config.toml`
