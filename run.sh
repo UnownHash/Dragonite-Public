@@ -73,6 +73,9 @@ download_latest_release() {
   # Define the download file name based on the selected file
   local download_filename="$FILE_NAME"
 
+  # Rename the old file with "_old" suffix
+  mv "$application/$download_filename" "$application/${download_filename}_old"
+
   # Download the specific release file
   echo "Downloading $download_filename $latest_tag_var ... waiting ..."
   curl -sL -H "Accept: application/octet-stream" -o "$application/$download_filename" "$download_url"
@@ -80,8 +83,16 @@ download_latest_release() {
   # Check if the download was successful
   if [ $? -ne 0 ]; then
     echo "Failed to download the release file"
+    mv "$application/${download_filename}_old" "$application/$download_filename"
     exit 1
   fi
+
+  # Rename the new file without "_new" suffix
+  mv "$application/${download_filename}_new" "$application/$download_filename"
+
+  # Delete the old download
+  rm -f "$application/${download_filename}_old"
+
   echo "Downloaded $download_filename $latest_tag_var"
   chmod +x "$application/$download_filename"
 }
