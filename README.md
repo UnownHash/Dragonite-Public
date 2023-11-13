@@ -4,6 +4,7 @@
 - Execute `run.sh` to download the latest release binary
 - Create `config.toml` for dragonite: `cp dragonite/config.toml.example dragonite/config.toml`
 - Create `config.toml` for admin: `cp admin/config.toml.example admin/config.toml`
+- Be sure to setup a database
 - Adjust both config.toml
 
 ## Start
