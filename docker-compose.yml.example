@@ -20,6 +20,8 @@ services:
     container_name: admin
     restart: unless-stopped
     environment:
+      ADMIN_GENERAL_HOST: 0.0.0.0
+      ADMIN_GENERAL_PORT: 7273
       ADMIN_GENERAL_USERNAME: admin
       ADMIN_GENERAL_PASSWORD: password
 
