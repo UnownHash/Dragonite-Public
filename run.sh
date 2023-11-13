@@ -82,15 +82,13 @@ download_latest_release() {
     echo "Failed to download the release file"
     exit 1
   fi
-
-  # Rename the old file with "_old" suffix
-  mv "$application/$download_filename" "$application/${download_filename}_old"
-
+  if [ -f "$application/$download_filename" ]; then
+    # Delete the old download
+    rm -f "$application/${download_filename}"
+  fi
+  
   # Rename the new file without "_new" suffix
   mv "$application/${download_filename}_new" "$application/$download_filename"
-
-  # Delete the old download
-  rm -f "$application/${download_filename}_old"
 
   echo "Downloaded $download_filename $latest_tag_var"
   chmod +x "$application/$download_filename"
