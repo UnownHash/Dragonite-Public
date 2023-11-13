@@ -75,7 +75,7 @@ download_latest_release() {
 
   # Download the specific release file
   echo "Downloading $download_filename $latest_tag_var ... waiting ..."
-  curl -sL -H "Accept: application/octet-stream" -o "$application/$download_filename" "$download_url"
+  curl -sL -H "Accept: application/octet-stream" -o "$application/${download_filename}_new" "$download_url"
 
   # Check if the download was successful
   if [ $? -ne 0 ]; then
