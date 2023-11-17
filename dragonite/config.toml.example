@@ -27,6 +27,7 @@ dynamic_route_split = true
 
 [rotom]
 endpoint = "ws://127.0.0.1:7071"
+#secret = ""
 
 [logging]
 save = true
