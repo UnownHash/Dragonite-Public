@@ -36,7 +36,6 @@
    ```
 
 6. Be sure to setup a database
-7. Adjust both config.toml
 
 ## Start
 1. Dragonite (change filename if using different platform)
@@ -46,6 +45,7 @@
    pm2 start ./dragonite-linux-amd64 --name dragonite -o "/dev/null"
    cd ..
    ```
+
 2. Admin (change filename if using different platform)
 
    ```bash
