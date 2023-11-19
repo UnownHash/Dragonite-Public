@@ -40,9 +40,9 @@ GITHUB_REPO="Dragonite-Public"
 git fetch --tags
 
 # Get the latest Git tag for the "dragonite-" prefix
-latest_dragonite_tag=$(git tag --list 'dragonite-v*' | sort -V | tail -n 1)
+latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
 # Get the latest Git tag for the "admin-" prefix
-latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
+latest_admin_tag=$(git tag --list 'admin-v*' | grep -v '\-testing' | sort -V | tail -n 1)
 
 download_latest_release() {
   local application="$1"
