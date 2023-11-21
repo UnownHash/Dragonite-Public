@@ -1,30 +1,39 @@
 #!/bin/bash
 
+# Parse possible arguments
+while getopts "tp:" arg; do
+  case $arg in
+    t) TESTING=true;;
+    p) FILE_PREFIX=$OPTARG;;
+  esac
+done
+
 # Check for operating system
-case $( uname -s ) in
-Linux)
+if [ -z "$FILE_PREFIX" ]; then
+  case $( uname -s ) in
+  Linux)
 
     case $( uname -i ) in
     x86_64)
-        FILE_PREFIX="linux-amd64"
-        ;;
+      FILE_PREFIX="linux-amd64"
+      ;;
     arm64)
-        FILE_PREFIX="linux-arm64"
-        ;;
+      FILE_PREFIX="linux-arm64"
+      ;;
     esac
 
-    ;;
-Darwin)
+  ;;
+  Darwin)
     FILE_PREFIX="darwin-arm64"
     ;;
-esac
+  esac
+fi
 
+# If prefix is still empty, exit 1
 if [ -z "$FILE_PREFIX" ]; then
-  if [ $# -eq 0 ]; then
-    echo "Usage: $0 [linux-amd64|darwin-arm64|linux-arm64]"
-    exit 1
-  fi
-  FILE_PREFIX="$1"
+  echo "File prefix couldn't be automatically determined. Set manually."
+  echo "Usage: $0 -p [linux-amd64|darwin-arm64|linux-arm64]"
+  exit 1
 fi
 
 if ! [ "$(which jq)" ]; then
@@ -39,10 +48,18 @@ GITHUB_REPO="Dragonite-Public"
 # Fetch the latest tags from the local Git repository
 git fetch --tags
 
-# Get the latest Git tag for the "dragonite-" prefix
-latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
-# Get the latest Git tag for the "admin-" prefix
-latest_admin_tag=$(git tag --list 'admin-v*' | grep -v '\-testing' | sort -V | tail -n 1)
+# Do we want the testing version?
+if [ "$TESTING" = "true" ]; then
+  # Get the latest Testing Git tag for the "dragonite-" prefix
+  latest_dragonite_tag=$(git tag --list 'dragonite-v*' | sort -V | tail -n 1)
+  # Get the latest Testing Git tag for the "admin-" prefix
+  latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
+else
+  # Get the latest Production Git tag for the "dragonite-" prefix
+  latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
+  # Get the latest Production Git tag for the "admin-" prefix
+  latest_admin_tag=$(git tag --list 'admin-v*' | grep -v '\-testing' | sort -V | tail -n 1)
+fi
 
 download_latest_release() {
   local application="$1"
