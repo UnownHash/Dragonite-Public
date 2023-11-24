@@ -62,3 +62,9 @@ if you want to use pm2 logs pls adapt config and pm2 command.
 - Check Changelog, check config.toml for new config values available
 - `pm2 restart dragonite`
 - `pm2 restart dragonite-admin`
+
+## Testing
+- To download a testing binary execute
+   ```bash
+   ./run.sh -t
+   ```
