@@ -1,10 +1,20 @@
 #!/bin/bash
 
 # Parse possible arguments
-while getopts "tp:" arg; do
+while getopts "tvp:" arg; do
   case $arg in
     t) TESTING=true;;
     p) FILE_PREFIX=$OPTARG;;
+    v) # Check next positional parameter
+       eval nextopt=\${$OPTIND}
+       # existing or starting with dash?
+       if [[ -n $nextopt && $nextopt != -* ]] ; then
+         OPTIND=$((OPTIND + 1))
+         SHOW_TAGS=$nextopt
+       else
+         SHOW_TAGS=true
+       fi
+       ;;
   esac
 done
 
@@ -27,6 +37,17 @@ if [ -z "$FILE_PREFIX" ]; then
     FILE_PREFIX="darwin-arm64"
     ;;
   esac
+fi
+
+# Show user tags if requested and exit
+if [ "$SHOW_TAGS" == true ] ; then
+  git fetch --tags
+  git tag --list 'dragonite-v*' | sort -rV
+  echo ""
+  git tag --list 'admin-v*' | sort -rV
+  echo ""
+  echo "Provide specific tag when using '-v' or don't pass flag to get latest"
+  exit 0
 fi
 
 # If prefix is still empty, exit 1
@@ -54,6 +75,11 @@ if [ "$TESTING" = "true" ]; then
   latest_dragonite_tag=$(git tag --list 'dragonite-v*' | sort -V | tail -n 1)
   # Get the latest Testing Git tag for the "admin-" prefix
   latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
+elif [ ! -z $SHOW_TAGS ] && [ $SHOW_TAGS != "true" ]; then
+  # Attempt to get the requested Dragonite tag
+  latest_dragonite_tag="dragonite-v${SHOW_TAGS}"
+  # Attempt to get requested Admin tag
+  latest_admin_tag="admin-v${SHOW_TAGS}"
 else
   # Get the latest Production Git tag for the "dragonite-" prefix
   latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
@@ -103,7 +129,7 @@ download_latest_release() {
     # Delete the old download
     rm -f "$application/${download_filename}"
   fi
-  
+
   # Rename the new file without "_new" suffix
   mv "$application/${download_filename}_new" "$application/$download_filename"
 
