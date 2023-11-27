@@ -77,9 +77,9 @@ if [ "$TESTING" = "true" ]; then
   latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
 elif [ ! -z $SHOW_TAGS ] && [ $SHOW_TAGS != "true" ]; then
   # Attempt to get the requested Dragonite tag
-  latest_dragonite_tag="dragonite-v${SHOW_TAGS}"
+  latest_dragonite_tag="${SHOW_TAGS}"
   # Attempt to get requested Admin tag
-  latest_admin_tag="admin-v${SHOW_TAGS}"
+  latest_admin_tag="${SHOW_TAGS}"
 else
   # Get the latest Production Git tag for the "dragonite-" prefix
   latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
@@ -137,5 +137,10 @@ download_latest_release() {
   chmod +x "$application/$download_filename"
 }
 
-download_latest_release "dragonite"
-download_latest_release "admin"
+if [[ $SHOW_TAGS == "dragonite-"* ]] || [ -z $SHOW_TAGS ] ; then
+  download_latest_release "dragonite"
+fi
+
+if [[ $SHOW_TAGS == "admin-"* ]] || [ -z $SHOW_TAGS ] ; then
+  download_latest_release "admin"
+fi
