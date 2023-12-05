@@ -40,7 +40,7 @@ save = true
 golbat_endpoint = "http://127.0.0.1:9001"
 golbat_raw_bearer = ""
 golbat_api_secret = ""
-# if this is present then dragonite will not send raws to the httpendpoint
+# if this is present then dragonite will not send raws to the httpendpoint - not used for API, be careful if you use grpc you still need 'golbat_endpoint' for API calls to Golbat
 #golbat_grpc_endpoint = "127.0.0.1:50001"
 
 [db.dragonite]
