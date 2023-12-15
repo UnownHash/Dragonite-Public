@@ -25,6 +25,10 @@ dynamic_route_split = true
 #location_delay = 0
 #fort_location_delay = 0
 
+#[accounts]
+#required_level = 30
+#leveling_level = 31
+
 [rotom]
 endpoint = "ws://127.0.0.1:7071"
 #secret = ""
