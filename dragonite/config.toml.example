@@ -26,8 +26,8 @@ dynamic_route_split = true
 #fort_location_delay = 0
 
 #[accounts]
-#required_level = 30
-#leveling_level = 31
+#required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
+#leveling_level = 31 # used to stop leveling at certain level
 
 [rotom]
 endpoint = "ws://127.0.0.1:7071"
