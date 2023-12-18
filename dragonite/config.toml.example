@@ -17,7 +17,6 @@ bearer_token = "KOJI_SECRET"
 #enabled = true
 
 [tuning]
-dynamic_route_split = true
 #recycle_gmo_limit = 4900
 #recycle_encounter_limit = 9900
 #recycle_on_jail=false
