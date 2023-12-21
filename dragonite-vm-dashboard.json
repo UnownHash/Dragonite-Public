@@ -713,18 +713,6 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_rpc_response[$inter])",
-          "hide": true,
-          "legendFormat": "{{status}}",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "editorMode": "code",
           "expr": "sum(increase(dragonite_rpc_response{status=~\"Success\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Success",
@@ -1038,7 +1026,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1181,7 +1170,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1709,6 +1699,6 @@
   "timezone": "",
   "title": "Dragonite",
   "uid": "dragonite-vm",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
