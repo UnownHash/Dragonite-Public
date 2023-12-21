@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.2.7"
+      "version": "10.1.5"
     },
     {
       "type": "datasource",
@@ -84,6 +84,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -209,6 +210,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 2,
@@ -226,6 +228,7 @@
             }
           },
           "mappings": [],
+          "max": 100,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -247,7 +250,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
+                  "fixedColor": "dark-green",
                   "mode": "fixed"
                 }
               }
@@ -401,14 +404,119 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_gmo_success_tries[$inter])",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"0\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
           "hide": false,
-          "legendFormat": "{{tries}}",
+          "instant": false,
+          "legendFormat": "0",
           "range": true,
-          "refId": "C"
+          "refId": "0"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"1\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "1",
+          "range": true,
+          "refId": "1"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"2\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "2",
+          "range": true,
+          "refId": "2"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"3\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "3",
+          "range": true,
+          "refId": "3"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"4\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "4",
+          "range": true,
+          "refId": "4"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"5\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "5",
+          "range": true,
+          "refId": "5"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"6\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "6",
+          "range": true,
+          "refId": "6"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"7\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "7",
+          "range": true,
+          "refId": "7"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"8\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "8",
+          "range": true,
+          "refId": "8"
         }
       ],
-      "title": "GMO Re-Tries / $inter",
+      "title": "GMO Retries / $inter",
       "transparent": true,
       "type": "timeseries"
     },
@@ -432,12 +540,13 @@
             "barAlignment": 0,
             "drawStyle": "bars",
             "fillOpacity": 100,
-            "gradientMode": "scheme",
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -468,7 +577,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "percent"
         },
         "overrides": [
           {
@@ -545,6 +654,36 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Account Suspended Rate Limited"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5794f2",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Undefined"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -575,10 +714,94 @@
           },
           "editorMode": "code",
           "expr": "rate(dragonite_rpc_response[$inter])",
-          "hide": false,
+          "hide": true,
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Success\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Success",
+          "range": true,
+          "refId": "Success"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Account Suspended Rate Limited\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Account Suspended Rate Limited",
+          "range": true,
+          "refId": "Account Suspended Rate Limited"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Action Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Action Error",
+          "range": true,
+          "refId": "Action Error"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Cancelled Request\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Cancelled Request",
+          "range": true,
+          "refId": "Cancelled Request"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"No Retries Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "No Retries Error",
+          "range": true,
+          "refId": "No Retries Error"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Parsing Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Parsing Error",
+          "range": true,
+          "refId": "Parsing Error"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Undefined\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Undefined",
+          "range": true,
+          "refId": "Undefined"
         }
       ],
       "title": "RPC Response / $inter",
@@ -604,12 +827,13 @@
             "barAlignment": 0,
             "drawStyle": "bars",
             "fillOpacity": 100,
-            "gradientMode": "opacity",
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -652,7 +876,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
+                  "fixedColor": "dark-green",
                   "mode": "fixed"
                 }
               }
@@ -682,7 +906,22 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
+                  "fixedColor": "#FF9830",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f2cc0c",
                   "mode": "fixed"
                 }
               }
@@ -716,11 +955,35 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_gmo_hits[$inter])",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Success\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
           "hide": false,
-          "legendFormat": "{{status}}",
+          "legendFormat": "Success",
           "range": true,
-          "refId": "C"
+          "refId": "Success"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Empty\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Empty",
+          "range": true,
+          "refId": "Empty"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Failed\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
+          "hide": false,
+          "legendFormat": "Failed",
+          "range": true,
+          "refId": "Failed"
         }
       ],
       "title": "GMO Hits / $inter",
@@ -752,6 +1015,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -774,8 +1038,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -895,6 +1158,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -917,8 +1181,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1053,6 +1316,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
@@ -1077,8 +1341,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1152,6 +1415,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1174,8 +1438,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1346,7 +1609,8 @@
       "type": "timeseries"
     }
   ],
-  "schemaVersion": 37,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1445,6 +1709,6 @@
   "timezone": "",
   "title": "Dragonite",
   "uid": "dragonite-vm",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
