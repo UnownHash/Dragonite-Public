@@ -23,7 +23,7 @@ if [ -z "$FILE_PREFIX" ]; then
   case $( uname -s ) in
   Linux)
 
-    case $( uname -i ) in
+    case $( uname -m ) in
     x86_64)
       FILE_PREFIX="linux-amd64"
       ;;
