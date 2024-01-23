@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.2.7"
+      "version": "10.2.3"
     },
     {
       "type": "datasource",
@@ -71,6 +71,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -84,12 +85,13 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "log": 2,
-              "type": "symlog"
+              "type": "log"
             },
             "showPoints": "auto",
             "spanNulls": false,
@@ -149,7 +151,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"pokemon\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"pokemon\"}[$inter])\n)",
+          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"pokemon\", instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"pokemon\", instance=~\"$instance\"}[$inter])\n)",
           "hide": false,
           "legendFormat": "Pokemon",
           "range": true,
@@ -161,7 +163,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"fort\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"fort\"}[$inter])\n)",
+          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"fort\", instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"fort\", instance=~\"$instance\"}[$inter])\n)",
           "hide": false,
           "legendFormat": "Fort",
           "range": true,
@@ -173,11 +175,11 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"scout\", exported_job=\"scout\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"scout\", exported_job=\"scout\"}[$inter])\n)",
+          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"scout\", exported_job=\"scout\", instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"scout\", exported_job=\"scout\", instance=~\"$instance\"}[$inter])\n)",
           "hide": false,
           "legendFormat": "Scout",
           "range": true,
-          "refId": "D"
+          "refId": "F"
         },
         {
           "datasource": {
@@ -185,7 +187,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"quest\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"quest\"}[$inter])\n)",
+          "expr": "avg(\n  rate(dragonite_location_handled_sum{area=~\"$area\", exported_job=\"quest\", instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_location_handled_counter{area=~\"$area\", exported_job=\"quest\", instance=~\"$instance\"}[$inter])\n)",
           "hide": false,
           "legendFormat": "Quest",
           "range": true,
@@ -208,6 +210,7 @@
             "mode": "continuous-RdYlGr"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -221,6 +224,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 2,
@@ -394,7 +398,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 6,
+      "id": 25,
       "options": {
         "legend": {
           "calcs": [],
@@ -414,7 +418,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"0\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"0\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "0",
@@ -427,7 +431,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"1\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"1\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "1",
@@ -440,7 +444,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"2\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"2\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "2",
@@ -453,7 +457,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"3\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"3\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "3",
@@ -466,7 +470,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"4\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"4\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "4",
@@ -479,7 +483,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"5\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"5\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "5",
@@ -492,7 +496,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"6\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"6\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "6",
@@ -505,7 +509,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"7\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"7\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "7",
@@ -518,7 +522,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"8\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_success_tries{tries=~\"8\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_success_tries{tries=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "instant": false,
           "legendFormat": "8",
@@ -543,6 +547,7 @@
             "seriesBy": "last"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -556,6 +561,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -702,7 +708,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 5,
+      "id": 27,
       "options": {
         "legend": {
           "calcs": [],
@@ -722,7 +728,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Success\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Success\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Success",
           "range": true,
@@ -734,7 +740,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Account Suspended Rate Limited\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Account Suspended Rate Limited\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Account Suspended Rate Limited",
           "range": true,
@@ -746,7 +752,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Action Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Action Error\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Action Error",
           "range": true,
@@ -758,7 +764,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Cancelled Request\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Cancelled Request\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Cancelled Request",
           "range": true,
@@ -770,7 +776,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"No Retries Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"No Retries Error\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "No Retries Error",
           "range": true,
@@ -782,7 +788,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Parsing Error\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Parsing Error\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Parsing Error",
           "range": true,
@@ -794,7 +800,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_rpc_response{status=~\"Undefined\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_rpc_response{status=~\"Undefined\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_rpc_response{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Undefined",
           "range": true,
@@ -817,6 +823,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -830,6 +837,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -851,8 +859,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -931,7 +938,7 @@
         "x": 0,
         "y": 24
       },
-      "id": 7,
+      "id": 29,
       "options": {
         "legend": {
           "calcs": [],
@@ -951,7 +958,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Success\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Success\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Success",
           "range": true,
@@ -963,7 +970,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Empty\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Empty\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Empty",
           "range": true,
@@ -975,7 +982,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Failed\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\"}[$inter:])) * 100",
+          "expr": "sum(increase(dragonite_gmo_hits{status=~\"Failed\", instance=~\"$instance\"}[$inter:])) / sum(increase(dragonite_gmo_hits{status=~\".*\", instance=~\"$instance\"}[$inter:])) * 100",
           "hide": false,
           "legendFormat": "Failed",
           "range": true,
@@ -998,6 +1005,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1011,6 +1019,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1033,8 +1042,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1118,7 +1126,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_auth_ptc[$inter])* $inter",
+          "expr": "rate(dragonite_auth_ptc{instance=~\"$instance\"}[$inter])* $inter",
           "hide": false,
           "legendFormat": "{{status}}",
           "range": true,
@@ -1141,6 +1149,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1154,6 +1163,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1176,8 +1186,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1276,7 +1285,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_account_status[$inter])*$inter",
+          "expr": "rate(dragonite_account_status{instance=~\"$instance\"}[$inter])*$inter",
           "hide": false,
           "legendFormat": "{{status}}",
           "range": true,
@@ -1299,164 +1308,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 2,
-              "type": "log"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Success"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "No Retries Error"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Empty"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Disabled"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 48
-      },
-      "id": 14,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "editorMode": "code",
-          "expr": "dragonite_scout_queue_size",
-          "hide": false,
-          "legendFormat": "Queue size",
-          "range": true,
-          "refId": "C"
-        }
-      ],
-      "title": "Scout Queue / $inter",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_VICTORIAMETRICS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1470,6 +1322,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
@@ -1494,8 +1347,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1511,7 +1363,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 48
       },
       "id": 12,
       "options": {
@@ -1533,7 +1385,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "rate(dragonite_location_handled_sum{exported_job=\"quest\"}[$inter]) / rate(dragonite_location_handled_counter{exported_job=\"quest\"}[$inter])",
+          "expr": "rate(dragonite_location_handled_sum{exported_job=\"quest\", instance=~\"$instance\"}[$inter]) / rate(dragonite_location_handled_counter{exported_job=\"quest\", instance=~\"$instance\"}[$inter])",
           "hide": false,
           "legendFormat": "{{area}}",
           "range": true,
@@ -1556,6 +1408,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1569,6 +1422,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1591,8 +1445,844 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "No Retries Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Empty"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "rate(dragonite_invasions_queue_size{instance=~\"$instance\"}[$inter])* $inter",
+          "hide": false,
+          "legendFormat": "Queue size",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Invasion Queue Size / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "No Retries Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Empty"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disabled"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "dragonite_scout_queue_size{instance=~\"$instance\"}",
+          "hide": false,
+          "legendFormat": "Queue size",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Scout Queue / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 64
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (type) (\n  rate(dragonite_invasions_time_queued{instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_invasions_confirmed_types{instance=~\"$instance\"}[$inter])\n)",
+          "hide": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(avg by (type) (\n  rate(invasions_time_queued{instance=~\"$instance\"}[$inter]) /\n  rate(invasions_confirmed_types{instance=~\"$instance\"}[$inter])\n))",
+          "hide": false,
+          "legendFormat": "total",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Invasion time queued / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "No Retries Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Empty"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disabled"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 64
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "rate(dragonite_invasions_status{instance=~\"$instance\"}[$inter])*$inter",
+          "hide": false,
+          "legendFormat": "{{status}}",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Invasion Status / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "No Retries Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Empty"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disabled"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 72
+      },
+      "id": 23,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "rate(dragonite_invasions_confirmed_types{instance=~\"$instance\"}[$inter])*$inter",
+          "hide": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Invasion Confirmed / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 72
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "avg by (type) (\n  rate(dragonite_invasions_time_left{instance=~\"$instance\"}[$inter]) /\n  rate(dragonite_invasions_confirmed_types{instance=~\"$instance\"}[$inter])\n)",
+          "hide": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Invasion time left / $inter",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1669,7 +2359,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 80
       },
       "id": 10,
       "options": {
@@ -1691,7 +2381,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_allow_consecutive_failures",
+          "expr": "dragonite_config_allow_consecutive_failures{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "allow_consecutive_failures",
           "range": true,
@@ -1703,7 +2393,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_fort_location_delay",
+          "expr": "dragonite_config_fort_location_delay{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "fort_location_delay",
           "range": true,
@@ -1715,7 +2405,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_location_delay",
+          "expr": "dragonite_config_location_delay{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "location_delay",
           "range": true,
@@ -1727,7 +2417,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_max_retries",
+          "expr": "dragonite_config_max_retries{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "max_retries",
           "range": true,
@@ -1739,7 +2429,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_no_pokemon_delay",
+          "expr": "dragonite_config_no_pokemon_delay{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "no_pokemon_delay",
           "range": true,
@@ -1751,7 +2441,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "dragonite_config_rpc_12_disable_count",
+          "expr": "dragonite_config_rpc_12_disable_count{instance=~\"$instance\"}",
           "hide": false,
           "legendFormat": "rpc_12_disable_count",
           "range": true,
@@ -1764,17 +2454,39 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_VICTORIAMETRICS}"
+        },
+        "definition": "label_values(dragonite_config_fort_location_delay, instance) ",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Instance",
+        "multi": false,
+        "name": "instance",
+        "options": [],
+        "query": {
+          "query": "label_values(dragonite_config_fort_location_delay, instance) ",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
       {
         "auto": false,
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1h",
           "value": "1h"
         },
@@ -1863,6 +2575,6 @@
   "timezone": "",
   "title": "Dragonite",
   "uid": "dragonite-vm",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
