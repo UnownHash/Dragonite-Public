@@ -69,15 +69,6 @@ GITHUB_REPO="Dragonite-Public"
 # Fetch the latest tags from the local Git repository
 git fetch --tags
 
-# Check for bad tags
-bad=$(git tag -l | grep -E "v\.")
-if [ ! -z $bad ]; then
-	for i in $bad ; do
-	echo "Found bad tag ${i}...Removing"
-	git tag -d $i
-	done
-fi
-
 # Do we want the testing version?
 if [ "$TESTING" = "true" ]; then
   # Get the latest Testing Git tag for the "dragonite-" prefix
