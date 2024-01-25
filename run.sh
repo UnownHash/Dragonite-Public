@@ -72,9 +72,9 @@ git fetch --tags
 # Do we want the testing version?
 if [ "$TESTING" = "true" ]; then
   # Get the latest Testing Git tag for the "dragonite-" prefix
-  latest_dragonite_tag=$(git tag --list 'dragonite-v*' | sort -V | tail -n 1)
+  latest_dragonite_tag=$(git tag --list| grep "dragonite-v[0-9]" | sort -V | tail -n 1)
   # Get the latest Testing Git tag for the "admin-" prefix
-  latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
+  latest_admin_tag=$(git tag --list | grep "admin-v[0-9]" | sort -V | tail -n 1)
 elif [ ! -z $SHOW_TAGS ] && [ $SHOW_TAGS != "true" ]; then
   # Attempt to get the requested Dragonite tag
   latest_dragonite_tag="${SHOW_TAGS}"
@@ -82,9 +82,9 @@ elif [ ! -z $SHOW_TAGS ] && [ $SHOW_TAGS != "true" ]; then
   latest_admin_tag="${SHOW_TAGS}"
 else
   # Get the latest Production Git tag for the "dragonite-" prefix
-  latest_dragonite_tag=$(git tag --list 'dragonite-v*' | grep -v '\-testing' | sort -V | tail -n 1)
+  latest_dragonite_tag=$(git tag --list | grep "dragonite-v[0-9]" | grep -v '\-testing' | sort -V | tail -n 1)
   # Get the latest Production Git tag for the "admin-" prefix
-  latest_admin_tag=$(git tag --list 'admin-v*' | grep -v '\-testing' | sort -V | tail -n 1)
+  latest_admin_tag=$(git tag --list | grep "admin-v[0-9]" | grep -v '\-testing' | sort -V | tail -n 1)
 fi
 
 download_latest_release() {
