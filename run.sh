@@ -23,7 +23,7 @@ if [ -z "$FILE_PREFIX" ]; then
   case $( uname -s ) in
   Linux)
 
-    case $( uname -m ) in
+    case $( uname -i ) in
     x86_64)
       FILE_PREFIX="linux-amd64"
       ;;
@@ -69,12 +69,21 @@ GITHUB_REPO="Dragonite-Public"
 # Fetch the latest tags from the local Git repository
 git fetch --tags
 
+# Check for bad tags
+bad=$(git tag -l | grep -E "v\.")
+if [ ! -z $bad ]; then
+	for i in $bad ; do
+	echo "Found bad tag ${i}...Removing"
+	git tag -d $i
+	done
+fi
+
 # Do we want the testing version?
 if [ "$TESTING" = "true" ]; then
   # Get the latest Testing Git tag for the "dragonite-" prefix
-  latest_dragonite_tag=$(git tag --list 'dragonite-v*' | sort -V | tail -n 1)
+  latest_dragonite_tag=$(git tag | grep -E "dragonite-v[0-9]" | sort -V | tail -n 1)
   # Get the latest Testing Git tag for the "admin-" prefix
-  latest_admin_tag=$(git tag --list 'admin-v*' | sort -V | tail -n 1)
+  latest_admin_tag=$(git tag | grep "admin-v[0-9]" | sort -V | tail -n 1)
 elif [ ! -z $SHOW_TAGS ] && [ $SHOW_TAGS != "true" ]; then
   # Attempt to get the requested Dragonite tag
   latest_dragonite_tag="${SHOW_TAGS}"
