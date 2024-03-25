@@ -27,6 +27,7 @@ bearer_token = "KOJI_SECRET"
 #location_delay = 0
 #fort_location_delay = 0
 #scout_age_limit = 30
+#token_refresh_only=true
 
 #[accounts]
 #required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
