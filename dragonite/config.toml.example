@@ -25,11 +25,18 @@ bearer_token = "KOJI_SECRET"
 #recycle_gmo_limit = 4900
 #recycle_encounter_limit = 9900
 #recycle_on_jail=false
-#minimum_account_reuse_hours = 169
+#minimum_account_reuse_hours = 169 # default 0
 #location_delay = 0
 #fort_location_delay = 0
 #scout_age_limit = 30
 #token_refresh_only=true
+
+# don't rely on remote auth and only use accounts with stored token - off by default
+# token_refresh_only = true
+# define concurrency for the token background initer
+# token_init_concurrency = 1
+# define the interval to request for tokens
+# token_init_interval_seconds = 1
 
 #[accounts]
 #required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
