@@ -29,7 +29,6 @@ bearer_token = "KOJI_SECRET"
 #location_delay = 0
 #fort_location_delay = 0
 #scout_age_limit = 30
-#token_refresh_only=true
 
 # don't rely on remote auth and only use accounts with stored token - off by default
 # token_refresh_only = true
