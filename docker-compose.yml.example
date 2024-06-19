@@ -20,16 +20,20 @@ services:
     container_name: admin
     restart: unless-stopped
     environment:
-      ADMIN_GENERAL_HOST: 0.0.0.0
-      ADMIN_GENERAL_PORT: 7273
-      ADMIN_GENERAL_USERNAME: admin
-      ADMIN_GENERAL_PASSWORD: password
+      - ADMIN.GENERAL.HOST=0.0.0.0
+      - ADMIN.GENERAL.PORT=7273
+      - ADMIN.GENERAL.USERNAME=admin
+      - ADMIN.GENERAL.PASSWORD=password
+      - ADMIN.GENERAL.LOG_LEVEL=info
+      - ADMIN.GENERAL.API_SECRET=''
 
-      ADMIN_DRAGONITE_API_ENDPOINT: http://dragonite:7272
-      ADMIN_DRAGONITE_API_SECRET: secret
+      - ADMIN.BACKENDS.0.DRAGONITE_ENDPOINT=http://dragonite:7272
+      - ADMIN.BACKENDS.0.GOLBAT_ENDPOINT=http://golbat:9001
+      - ADMIN.BACKENDS.0.GOLBAT_API_SECRET=''
 
-      ADMIN_GOLBAT_API_ENDPOINT: http://golbat:9001
-      ADMIN_GOLBAT_API_SECRET: secret
+      # - ADMIN.BACKENDS.1.DRAGONITE_ENDPOINT=http://dragonite:7274
+      # - ADMIN.BACKENDS.1.GOLBAT_ENDPOINT=http://golbat:9002
+      # - ADMIN.BACKENDS.1.GOLBAT_API_SECRET=""
     ports:
       - '7273:7273'
 

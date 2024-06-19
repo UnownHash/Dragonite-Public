@@ -3,11 +3,14 @@ host = "127.0.0.1"
 port = 7273
 username = "admin"
 password = "password"
+api_secret = ""
 
-[dragonite]
-api_endpoint = "http://127.0.0.1:7272"
-# api_secret = ""
+[[backends]]
+dragonite_endpoint = "http://127.0.0.1:7272"
+golbat_endpoint = "http://127.0.0.1:9001"
+golbat_api_secret = ""
 
-[golbat]
-api_endpoint = "http://127.0.0.1:9001"
-# api_secret = ""
+# [[backends]]
+# dragonite_endpoint = "http://127.0.0.1:7282"
+# golbat_endpoint = "http://127.0.0.1:9011"
+# golbat_api_secret = ""
