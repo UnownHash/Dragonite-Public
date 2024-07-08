@@ -1,18 +1,32 @@
 [general]
-login_delay = 0
-# seconds to sleep in-between PTC authing on one proxy
-
-# Whether raw worker stats are written
-stats = false
-
 # Host and Port used for the Dragonite API
 api_host = "127.0.0.1"
 api_port = 7272
 
+# Whether raw worker stats are written
+stats = true
+
+[auth.ptc]
+# to use this provider pls enable it
+enable = false
+# seconds to sleep in-between PTC authing on one proxy
+#login_delay = 20
 # Uses login proxy as you wish, e.g. Swirlix or Xilriws
 #remote_auth_url = "http://127.0.0.1:1234/api/v1/login-code"
-# Initialises PTC refresh tokens in the background
-token_init_enabled=true
+# background initer to collect tokens of accounts without using them - this is false by default
+#token_init_enabled=true
+# don't rely on remote auth and only use accounts with stored token
+#token_refresh_only = true
+
+[auth.nk]
+# to use this provider pls enable it
+enable = false
+# seconds to sleep in-between PTC authing on one proxy
+#login_delay = 20
+# background initer to collect tokens of accounts without using them - this is false by default
+#token_init_enabled=true
+# don't rely on user-pass auth and only use accounts with stored token
+#token_refresh_only = true
 
 [koji]
 url = "http://ip:port"
@@ -30,13 +44,6 @@ bearer_token = "KOJI_SECRET"
 #fort_location_delay = 0
 #scout_age_limit = 30
 
-# don't rely on remote auth and only use accounts with stored token - off by default
-#token_refresh_only = true
-# define concurrency for the token background initer
-#token_init_concurrency = 1
-# define the interval to request for tokens
-#token_init_interval_seconds = 1
-
 #[accounts]
 #required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
 #leveling_level = 31 # used to stop leveling at certain level
@@ -45,12 +52,6 @@ bearer_token = "KOJI_SECRET"
 endpoint = "ws://127.0.0.1:7071"
 #secret = ""
 
-[logging]
-save = true
-#debug = false
-#max_size = 500 # MB
-#max_age = 30 # days
-
 [processors]
 # Golbat Endpoint is singular - and will configure an endpoint for raw sending and API
 golbat_endpoint = "http://127.0.0.1:9001"
@@ -58,6 +59,12 @@ golbat_raw_bearer = ""
 golbat_api_secret = ""
 # if this is present then dragonite will not send raws to the httpendpoint - not used for API, be careful if you use grpc you still need 'golbat_endpoint' for API calls to Golbat
 #golbat_grpc_endpoint = "127.0.0.1:50001"
+
+[logging]
+save = true
+#debug = false
+#max_size = 500 # MB
+#max_age = 30 # days
 
 [db.dragonite]
 host = "0.0.0.0"
