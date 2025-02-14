@@ -3,6 +3,9 @@
 api_host = "127.0.0.1"
 api_port = 7272
 
+# Instance name to show in Dragonite-Admin
+instance_name = "Main"
+
 # Whether raw worker stats are written
 stats = true
 
@@ -17,6 +20,19 @@ enable = false
 #token_init_enabled=true
 # don't rely on remote auth and only use accounts with stored token
 #token_refresh_only = true
+# define the interval to request for tokens in seconds
+#token_init_interval_seconds = 60 
+
+# Don't touch these unless you know what you are doing.
+#token_init_concurrency = 1
+#remote_auth_timeout_seconds = 60
+#token_init_retry_delay_minutes = 
+#token_init_start_delay_minutes = 
+#token_refresh_days = 
+#token_refresh_start_delay_minutes =
+#ip_ban_backoff_minutes=15
+#remote_auth_secret = ""
+#token_valid_days = 
 
 [auth.nk]
 # to use this provider pls enable it
@@ -38,12 +54,24 @@ bearer_token = "KOJI_SECRET"
 [tuning]
 #recycle_gmo_limit = 4900
 #recycle_encounter_limit = 9900
-#recycle_invasion_limit = 940
+#recycle_invasion_limit = 940  # Only works in testing builds at the moment.
 #recycle_on_jail=false
 #minimum_account_reuse_hours = 169 # default 0
-#location_delay = 0
+#location_delay = 0 # Default is 0, you probably should change this.
 #fort_location_delay = 0
 #scout_age_limit = 30
+
+# Make location_delay(max) dynamic by tuning against initial_gmo_success_rate(percentage), limited by minimum_location_delay(min).
+#initial_gmo_success_rate = 75
+#minimum_location_delay = 4000
+
+# Introduced in 1.10.9 Testing. Automatically test accounts for being shadow banned and marked as banned in database.
+#test_shadow_banned=true
+
+# Introduced in Dragonite 1.12.3-testing
+# This option for questing will hold on to AR Quests and try to move to 'ar only scans' over time.
+# This may become default later (the current default is 'true' which means it will try and drop ar quests if you have them as required, unless your account is marked as ar banned)
+#quest_layer_swap = false
 
 #[accounts]
 #required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
