@@ -38,19 +38,13 @@ bearer_token = "KOJI_SECRET"
 #enabled = true
 
 [tuning]
-#recycle_gmo_limit = 4900
-#recycle_encounter_limit = 9900
-#recycle_invasion_limit = 940  # Only works in testing builds at the moment.
+#recycle_gmo_limit = 4990
+#recycle_encounter_limit = 9975
+#recycle_invasion_limit = 900  # Only works in testing builds at the moment.
 #minimum_account_reuse_hours = 169 # Default is 0
 #scout_age_limit = 30 # Default is 30 minutes.
-recycle_on_jail=false
-location_delay = 3000 # Default is 0 milliseconds.
-fort_location_delay = 3000 # Default is 0 milliseconds.
-# Automatically test accounts for being shadow banned and marked as banned in database.
-test_shadow_banned=true
-# This option for questing will hold on to AR Quests and try to move to 'ar only scans' over time.
-# The current default is 'true' which means it will try and drop ar quests if you have them as required, unless your account is marked as ar banned
-quest_layer_swap = false
+#location_delay = 2500 # Default is 2500 milliseconds.
+#fort_location_delay = 0 
 
 #[accounts]
 #required_level = 30 # used for everything except leveling (quest can force level 31 at specific events)
