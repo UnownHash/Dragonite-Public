@@ -1,9 +1,20 @@
 [general]
 host = "127.0.0.1"
 port = 7273
+
+# username and password used to access the web interface
+# if you set username and password to `""`, auth is disabled
 username = "admin"
 password = "password"
+
+# the header secret for accessing the admin API
+# `X-Dragonite-Admin-Secret` is the header key
 api_secret = ""
+
+# string used to sign and secure auth JWTs
+# generate one with: `openssl rand -hex 32`
+# rotating this value invalidates every outstanding token (mass-logout)
+jwt_secret = ""
 
 [[backends]]
 dragonite_endpoint = "http://127.0.0.1:7272"
